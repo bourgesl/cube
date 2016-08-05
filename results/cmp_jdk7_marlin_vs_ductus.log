@@ -1,0 +1,20 @@
+
+Quad core 9550 2,83Ghz - 480 cubes inscrits dans 64x64 en full HD
+
+            Jdk 1.7 Ductus   |  Jdk 1.7 Marlin 0.7.3.2-unsafe
+                                       
+Threads 1   Min FPS : 19     |    16
+Threads 1   Max FPS : 67     |    47
+Threads 1   Avg FPS : 27     |    23
+-------------------------------------
+Threads 2   Min FPS : 12     |    23
+Threads 2   Max FPS : 41     |    74
+Threads 2   Avg FPS : 17     |    33
+-------------------------------------
+Threads 4   Min FPS : 12     |    37
+Threads 4   Max FPS : 41     |   123
+Threads 4   Avg FPS : 18     |    56
+-------------------------------------
+Threads 8   Min FPS : 12     |    35
+Threads 8   Max FPS : 39     |   160
+Threads 8   Avg FPS : 17     |    68

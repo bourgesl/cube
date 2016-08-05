@@ -1,0 +1,187 @@
+bourgesl@bourgesl-HP-ZBook-15:~/Téléchargements/cubes_v2/cubes$ ./test.sh
+Java version:
+java version "1.8.0_102"
+Java(TM) SE Runtime Environment (build 1.8.0_102-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.102-b14, mixed mode)
+TH: 1
+SIZE: 32
+Number of threads 1
+Each cube area side 32
+Result with 1 threads and 32 cube size ------------------ 
+ Min FPS : 34
+ Max FPS : 131
+ Avg FPS : 53
+Real FPS avg : 49
+TH: 2
+SIZE: 32
+Number of threads 2
+Each cube area side 32
+Result with 2 threads and 32 cube size ------------------ 
+ Min FPS : 17
+ Max FPS : 90
+ Avg FPS : 25
+Real FPS avg : 24
+TH: 4
+SIZE: 32
+Number of threads 4
+Each cube area side 32
+Result with 4 threads and 32 cube size ------------------ 
+ Min FPS : 12
+ Max FPS : 84
+ Avg FPS : 21
+Real FPS avg : 20
+TH: 8
+SIZE: 32
+Number of threads 8
+Each cube area side 32
+Result with 8 threads and 32 cube size ------------------ 
+ Min FPS : 11
+ Max FPS : 75
+ Avg FPS : 20
+Real FPS avg : 19
+TH: 1
+SIZE: 64
+Number of threads 1
+Each cube area side 64
+Result with 1 threads and 64 cube size ------------------ 
+ Min FPS : 34
+ Max FPS : 193
+ Avg FPS : 73
+Real FPS avg : 65
+TH: 2
+SIZE: 64
+Number of threads 2
+Each cube area side 64
+Result with 2 threads and 64 cube size ------------------ 
+ Min FPS : 24
+ Max FPS : 112
+ Avg FPS : 37
+Real FPS avg : 35
+TH: 4
+SIZE: 64
+Number of threads 4
+Each cube area side 64
+Result with 4 threads and 64 cube size ------------------ 
+ Min FPS : 15
+ Max FPS : 118
+ Avg FPS : 30
+Real FPS avg : 28
+TH: 8
+SIZE: 64
+Number of threads 8
+Each cube area side 64
+Result with 8 threads and 64 cube size ------------------ 
+ Min FPS : 15
+ Max FPS : 97
+ Avg FPS : 28
+Real FPS avg : 26
+TH: 1
+SIZE: 128
+Number of threads 1
+Each cube area side 128
+Result with 1 threads and 128 cube size ------------------ 
+ Min FPS : 64
+ Max FPS : 290
+ Avg FPS : 102
+Real FPS avg : 87
+TH: 2
+SIZE: 128
+Number of threads 2
+Each cube area side 128
+Result with 2 threads and 128 cube size ------------------ 
+ Min FPS : 32
+ Max FPS : 173
+ Avg FPS : 56
+Real FPS avg : 51
+TH: 4
+SIZE: 128
+Number of threads 4
+Each cube area side 128
+Result with 4 threads and 128 cube size ------------------ 
+ Min FPS : 21
+ Max FPS : 229
+ Avg FPS : 46
+Real FPS avg : 42
+TH: 8
+SIZE: 128
+Number of threads 8
+Each cube area side 128
+Result with 8 threads and 128 cube size ------------------ 
+ Min FPS : 19
+ Max FPS : 181
+ Avg FPS : 44
+Real FPS avg : 40
+TH: 1
+SIZE: 256
+Number of threads 1
+Each cube area side 256
+Result with 1 threads and 256 cube size ------------------ 
+ Min FPS : 112
+ Max FPS : 396
+ Avg FPS : 157
+Real FPS avg : 121
+TH: 2
+SIZE: 256
+Number of threads 2
+Each cube area side 256
+Result with 2 threads and 256 cube size ------------------ 
+ Min FPS : 49
+ Max FPS : 250
+ Avg FPS : 91
+Real FPS avg : 78
+TH: 4
+SIZE: 256
+Number of threads 4
+Each cube area side 256
+Result with 4 threads and 256 cube size ------------------ 
+ Min FPS : 37
+ Max FPS : 365
+ Avg FPS : 87
+Real FPS avg : 71
+TH: 8
+SIZE: 256
+Number of threads 8
+Each cube area side 256
+Result with 8 threads and 256 cube size ------------------ 
+ Min FPS : 33
+ Max FPS : 332
+ Avg FPS : 84
+Real FPS avg : 70
+TH: 1
+SIZE: 512
+Number of threads 1
+Each cube area side 512
+Result with 1 threads and 512 cube size ------------------ 
+ Min FPS : 150
+ Max FPS : 490
+ Avg FPS : 229
+Real FPS avg : 146
+TH: 2
+SIZE: 512
+Number of threads 2
+Each cube area side 512
+Result with 2 threads and 512 cube size ------------------ 
+ Min FPS : 79
+ Max FPS : 435
+ Avg FPS : 170
+Real FPS avg : 116
+TH: 4
+SIZE: 512
+Number of threads 4
+Each cube area side 512
+Result with 4 threads and 512 cube size ------------------ 
+ Min FPS : 79
+ Max FPS : 493
+ Avg FPS : 167
+Real FPS avg : 116
+TH: 8
+SIZE: 512
+Number of threads 8
+Each cube area side 512
+Result with 8 threads and 512 cube size ------------------ 
+ Min FPS : 69
+ Max FPS : 377
+ Avg FPS : 188
+Real FPS avg : 128
+done
+

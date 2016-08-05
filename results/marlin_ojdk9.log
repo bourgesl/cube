@@ -1,0 +1,187 @@
+bourgesl@bourgesl-HP-ZBook-15:~/Téléchargements/cubes_v2/cubes$ ./test.sh
+Java version:
+openjdk version "9-internal"
+OpenJDK Runtime Environment (build 9-internal+0-2016-08-01-230108.bourgesl.client)
+OpenJDK 64-Bit Server VM (build 9-internal+0-2016-08-01-230108.bourgesl.client, mixed mode)
+TH: 1
+SIZE: 32
+Number of threads 1
+Each cube area side 32
+Result with 1 threads and 32 cube size ------------------ 
+ Min FPS : 27
+ Max FPS : 92
+ Avg FPS : 40
+Real FPS avg : 38
+TH: 2
+SIZE: 32
+Number of threads 2
+Each cube area side 32
+Result with 2 threads and 32 cube size ------------------ 
+ Min FPS : 41
+ Max FPS : 158
+ Avg FPS : 61
+Real FPS avg : 54
+TH: 4
+SIZE: 32
+Number of threads 4
+Each cube area side 32
+Result with 4 threads and 32 cube size ------------------ 
+ Min FPS : 44
+ Max FPS : 148
+ Avg FPS : 73
+Real FPS avg : 65
+TH: 8
+SIZE: 32
+Number of threads 8
+Each cube area side 32
+Result with 8 threads and 32 cube size ------------------ 
+ Min FPS : 42
+ Max FPS : 185
+ Avg FPS : 77
+Real FPS avg : 67
+TH: 1
+SIZE: 64
+Number of threads 1
+Each cube area side 64
+Result with 1 threads and 64 cube size ------------------ 
+ Min FPS : 40
+ Max FPS : 156
+ Avg FPS : 62
+Real FPS avg : 56
+TH: 2
+SIZE: 64
+Number of threads 2
+Each cube area side 64
+Result with 2 threads and 64 cube size ------------------ 
+ Min FPS : 51
+ Max FPS : 249
+ Avg FPS : 84
+Real FPS avg : 73
+TH: 4
+SIZE: 64
+Number of threads 4
+Each cube area side 64
+Result with 4 threads and 64 cube size ------------------ 
+ Min FPS : 65
+ Max FPS : 232
+ Avg FPS : 98
+Real FPS avg : 82
+TH: 8
+SIZE: 64
+Number of threads 8
+Each cube area side 64
+Result with 8 threads and 64 cube size ------------------ 
+ Min FPS : 63
+ Max FPS : 344
+ Avg FPS : 114
+Real FPS avg : 93
+TH: 1
+SIZE: 128
+Number of threads 1
+Each cube area side 128
+Result with 1 threads and 128 cube size ------------------ 
+ Min FPS : 56
+ Max FPS : 239
+ Avg FPS : 88
+Real FPS avg : 75
+TH: 2
+SIZE: 128
+Number of threads 2
+Each cube area side 128
+Result with 2 threads and 128 cube size ------------------ 
+ Min FPS : 63
+ Max FPS : 238
+ Avg FPS : 110
+Real FPS avg : 90
+TH: 4
+SIZE: 128
+Number of threads 4
+Each cube area side 128
+Result with 4 threads and 128 cube size ------------------ 
+ Min FPS : 64
+ Max FPS : 388
+ Avg FPS : 121
+Real FPS avg : 96
+TH: 8
+SIZE: 128
+Number of threads 8
+Each cube area side 128
+Result with 8 threads and 128 cube size ------------------ 
+ Min FPS : 63
+ Max FPS : 334
+ Avg FPS : 139
+Real FPS avg : 105
+TH: 1
+SIZE: 256
+Number of threads 1
+Each cube area side 256
+Result with 1 threads and 256 cube size ------------------ 
+ Min FPS : 87
+ Max FPS : 446
+ Avg FPS : 141
+Real FPS avg : 109
+TH: 2
+SIZE: 256
+Number of threads 2
+Each cube area side 256
+Result with 2 threads and 256 cube size ------------------ 
+ Min FPS : 89
+ Max FPS : 410
+ Avg FPS : 158
+Real FPS avg : 112
+TH: 4
+SIZE: 256
+Number of threads 4
+Each cube area side 256
+Result with 4 threads and 256 cube size ------------------ 
+ Min FPS : 100
+ Max FPS : 442
+ Avg FPS : 169
+Real FPS avg : 118
+TH: 8
+SIZE: 256
+Number of threads 8
+Each cube area side 256
+Result with 8 threads and 256 cube size ------------------ 
+ Min FPS : 97
+ Max FPS : 468
+ Avg FPS : 179
+Real FPS avg : 120
+TH: 1
+SIZE: 512
+Number of threads 1
+Each cube area side 512
+Result with 1 threads and 512 cube size ------------------ 
+ Min FPS : 140
+ Max FPS : 471
+ Avg FPS : 219
+Real FPS avg : 144
+TH: 2
+SIZE: 512
+Number of threads 2
+Each cube area side 512
+Result with 2 threads and 512 cube size ------------------ 
+ Min FPS : 108
+ Max FPS : 594
+ Avg FPS : 259
+Real FPS avg : 144
+TH: 4
+SIZE: 512
+Number of threads 4
+Each cube area side 512
+Result with 4 threads and 512 cube size ------------------ 
+ Min FPS : 109
+ Max FPS : 518
+ Avg FPS : 213
+Real FPS avg : 132
+TH: 8
+SIZE: 512
+Number of threads 8
+Each cube area side 512
+Result with 8 threads and 512 cube size ------------------ 
+ Min FPS : 68
+ Max FPS : 409
+ Avg FPS : 180
+Real FPS avg : 126
+done
+

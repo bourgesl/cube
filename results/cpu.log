@@ -1,0 +1,16 @@
+analyzing CPU 0:
+  driver: acpi-cpufreq
+  CPUs which run at the same hardware frequency: 0
+  CPUs which need to have their frequency coordinated by software: 0
+  maximum transition latency: 10.0 us.
+  hardware limits: 800 MHz - 2.70 GHz
+  available frequency steps: 2.70 GHz, 2.70 GHz, 2.60 GHz, 2.40 GHz, 2.30 GHz, 2.20 GHz, 2.00 GHz, 1.90 GHz, 1.70 GHz, 1.60 GHz, 1.50 GHz, 1.30 GHz, 1.20 GHz, 1.10 GHz, 900 MHz, 800 MHz
+  available cpufreq governors: conservative, ondemand, userspace, powersave, performance
+  current policy: frequency should be within 800 MHz and 2.70 GHz.
+                  The governor "ondemand" may decide which speed to use
+                  within this range.
+  current CPU frequency is 800 MHz.
+  cpufreq stats: 2.70 GHz:10,05%, 2.70 GHz:0,00%, 2.60 GHz:0,81%, 2.40 GHz:0,61%, 2.30 GHz:0,70%, 2.20 GHz:5,36%, 2.00 GHz:2,13%, 1.90 GHz:3,58%, 1.70 GHz:1,39%, 1.60 GHz:2,73%, 1.50 GHz:5,74%, 1.30 GHz:2,98%, 1.20 GHz:3,53%, 1.10 GHz:5,22%, 900 MHz:2,79%, 800 MHz:52,39%  (42198)
+  boost state support:
+    Supported: yes
+    Active: yes
