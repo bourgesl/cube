@@ -1,0 +1,21 @@
+
+Quad core i7 4800 2,00Ghz (fixed) - 480 cubes inscrits dans 64x64 en full HD
+
+            Jdk 1.8 Ductus   |  OpenJdk 1.9 b130 Marlin 0.7.4
+                                       
+Threads 1   Min FPS :  26     |    24
+Threads 1   Max FPS : 108     |    91
+Threads 1   Avg FPS :  43     |    37
+-------------------------------------
+Threads 2   Min FPS :  23     |    43
+Threads 2   Max FPS :  89     |   152
+Threads 2   Avg FPS :  33     |    67
+-------------------------------------
+Threads 4   Min FPS :  22     |    49
+Threads 4   Max FPS :  93     |   169
+Threads 4   Avg FPS :  34     |    85
+-------------------------------------
+Threads 8   Min FPS :  20     |    46
+Threads 8   Max FPS :  91     |   193
+Threads 8   Avg FPS :  33     |    91
+
