@@ -46,9 +46,9 @@ public abstract class FullScreen implements Runnable {
 
     public static final long ROT_FRAMES = (360 / Cubes.ANG_INC); // 1 complete rotation
 
-    public static final long MIN_FRAMES = ROT_FRAMES * 3; // calibration
+    public static final long MIN_FRAMES = ROT_FRAMES * 2; // calibration
 
-    public static final long MAX_FRAMES = MIN_FRAMES + ROT_FRAMES * 30; // 30 complete rotations in benchmark
+    public static final long MAX_FRAMES = MIN_FRAMES + ROT_FRAMES * 20; // 20 complete rotations in benchmark
 
     /** Screen device */
     protected GraphicsDevice currentScreenDevice = null;

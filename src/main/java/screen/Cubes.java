@@ -168,9 +168,10 @@ public final class Cubes extends FullScreen {
         private final int start;
         private final int end;
 
-        Drawer(int idx, int end) {
-            this.start = idx;
+        Drawer(int start, int end) {
+            this.start = start;
             this.end = end;
+//            System.out.println("Drawer: " + (end - start) + " cubes");
         }
 
         @Override
@@ -226,21 +227,32 @@ public final class Cubes extends FullScreen {
 
         cube = new Cube(CUBE_SIZE / 2, CUBE_SIZE / 2);
 
+        drawers = new Drawer[THREADS_COUNT];
+
         if (THREADS_COUNT > 1) {
             pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(THREADS_COUNT);
             pool.prestartAllCoreThreads();
             futures = new ArrayList<>(THREADS_COUNT);
 
-            drawers = new Drawer[THREADS_COUNT];
+            // for large cube size and many threads, the workload may be asymetric:
+            final float step = ((float) cubesCount) / THREADS_COUNT;
+            float last = 0f, end;
 
-            final int p = cubesCount / THREADS_COUNT;
-            for (int i = 0; i < THREADS_COUNT; i++) {
-                drawers[i] = (i == THREADS_COUNT - 1) ? new Drawer(i * p, cubesCount) : new Drawer(i * p, i * p + p);
+            for (int i = 0; i < THREADS_COUNT; i++, last += step) {
+                end = last + step;
+                if (end > cubesCount) {
+                    end = cubesCount;
+                }
+                if (i == (THREADS_COUNT - 1)) {
+                    end = cubesCount;
+                }
+                drawers[i] = new Drawer((int) last, (int) end);
             }
         } else {
             pool = null;
             futures = null;
-            drawers = null;
+
+            drawers[0] = new Drawer(0, cubesCount);
         }
 
         // We use a bufferImage but we could directly draw on the screen
@@ -368,11 +380,8 @@ public final class Cubes extends FullScreen {
                 }
             } catch (Exception ignored) {
             }
-
         } else {
-            for (int i = 0, len = cubesCount; i < len; i++) {
-                drawCube(i);
-            }
+            drawers[0].run();
         }
 
         time = System.nanoTime() - time;

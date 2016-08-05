@@ -153,71 +153,71 @@ SIZE: 256
 Number of threads 1
 Each cube area side 256
 Results with 1 threads and cube size = 256 (84 sides) ------------------
- Min FPS: 55
- Max FPS: 247
- Avg FPS: 86
-Real Avg FPS: 72
+ Min FPS: 57
+ Max FPS: 258
+ Avg FPS: 90
+Real Avg FPS: 75
 TH: 2
 SIZE: 256
 Number of threads 2
 Each cube area side 256
 Results with 2 threads and cube size = 256 (84 sides) ------------------
- Min FPS: 76
- Max FPS: 363
- Avg FPS: 146
-Real Avg FPS: 108
+ Min FPS: 81
+ Max FPS: 371
+ Avg FPS: 152
+Real Avg FPS: 111
 TH: 4
 SIZE: 256
 Number of threads 4
 Each cube area side 256
 Results with 4 threads and cube size = 256 (84 sides) ------------------
- Min FPS: 78
- Max FPS: 365
- Avg FPS: 151
+ Min FPS: 83
+ Max FPS: 361
+ Avg FPS: 153
 Real Avg FPS: 111
 TH: 8
 SIZE: 256
 Number of threads 8
 Each cube area side 256
 Results with 8 threads and cube size = 256 (84 sides) ------------------
- Min FPS: 94
- Max FPS: 379
- Avg FPS: 156
-Real Avg FPS: 112
+ Min FPS: 89
+ Max FPS: 423
+ Avg FPS: 185
+Real Avg FPS: 126
 TH: 1
 SIZE: 512
 Number of threads 1
 Each cube area side 512
 Results with 1 threads and cube size = 512 (18 sides) ------------------
- Min FPS: 108
- Max FPS: 298
- Avg FPS: 151
+ Min FPS: 107
+ Max FPS: 295
+ Avg FPS: 152
 Real Avg FPS: 112
 TH: 2
 SIZE: 512
 Number of threads 2
 Each cube area side 512
 Results with 2 threads and cube size = 512 (18 sides) ------------------
- Min FPS: 103
- Max FPS: 396
- Avg FPS: 234
+ Min FPS: 115
+ Max FPS: 400
+ Avg FPS: 237
 Real Avg FPS: 145
 TH: 4
 SIZE: 512
 Number of threads 4
 Each cube area side 512
 Results with 4 threads and cube size = 512 (18 sides) ------------------
- Min FPS: 119
- Max FPS: 380
- Avg FPS: 195
-Real Avg FPS: 132
+ Min FPS: 118
+ Max FPS: 403
+ Avg FPS: 234
+Real Avg FPS: 144
 TH: 8
 SIZE: 512
 Number of threads 8
 Each cube area side 512
 Results with 8 threads and cube size = 512 (18 sides) ------------------
- Min FPS: 90
- Max FPS: 283
- Avg FPS: 146
-Real Avg FPS: 109
+ Min FPS: 117
+ Max FPS: 466
+ Avg FPS: 288
+Real Avg FPS: 149
 done
