@@ -1,4 +1,41 @@
-bourgesl@bourgesl-HP-ZBook-15:~/Téléchargements/cubes_v2/cubes$ ./test.sh
+CPU info:
+Architecture:          x86_64
+Mode(s) opératoire(s) des processeurs :32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) par cœur : 1
+Cœur(s) par socket : 4
+Socket(s):             1
+Nœud(s) NUMA :       1
+Identifiant constructeur :GenuineIntel
+Famille de processeur :6
+Modèle :             60
+Révision :           3
+Vitesse du processeur en MHz :2000.000
+BogoMIPS:              5387.68
+Virtualisation :      VT-x
+Cache L1d :           32K
+Cache L1i :           32K
+Cache L2 :            256K
+Cache L3 :            6144K
+NUMA node0 CPU(s):     0-3
+analyzing CPU 0:
+  driver: acpi-cpufreq
+  CPUs which run at the same hardware frequency: 0
+  CPUs which need to have their frequency coordinated by software: 0
+  maximum transition latency: 10.0 us.
+  hardware limits: 800 MHz - 2.70 GHz
+  available frequency steps: 2.70 GHz, 2.70 GHz, 2.60 GHz, 2.40 GHz, 2.30 GHz, 2.20 GHz, 2.00 GHz, 1.90 GHz, 1.70 GHz, 1.60 GHz, 1.50 GHz, 1.30 GHz, 1.20 GHz, 1.10 GHz, 900 MHz, 800 MHz
+  available cpufreq governors: conservative, ondemand, userspace, powersave, performance
+  current policy: frequency should be within 800 MHz and 2.00 GHz.
+                  The governor "performance" may decide which speed to use
+                  within this range.
+  current CPU frequency is 2.00 GHz.
+  cpufreq stats: 2.70 GHz:0,79%, 2.70 GHz:0,00%, 2.60 GHz:0,00%, 2.40 GHz:0,00%, 2.30 GHz:0,00%, 2.20 GHz:0,01%, 2.00 GHz:98,91%, 1.90 GHz:0,01%, 1.70 GHz:0,00%, 1.60 GHz:0,00%, 1.50 GHz:0,01%, 1.30 GHz:0,00%, 1.20 GHz:0,00%, 1.10 GHz:0,01%, 900 MHz:0,01%, 800 MHz:0,23%  (495)
+  boost state support:
+    Supported: yes
+    Active: yes
 Java version:
 java version "1.8.0_102"
 Java(TM) SE Runtime Environment (build 1.8.0_102-b14)
@@ -7,181 +44,180 @@ TH: 1
 SIZE: 32
 Number of threads 1
 Each cube area side 32
-Result with 1 threads and 32 cube size ------------------ 
- Min FPS : 34
- Max FPS : 131
- Avg FPS : 53
-Real FPS avg : 49
+Results with 1 threads and cube size = 32 (5940 sides) ------------------
+ Min FPS: 21
+ Max FPS: 74
+ Avg FPS: 30
+Real Avg FPS: 28
 TH: 2
 SIZE: 32
 Number of threads 2
 Each cube area side 32
-Result with 2 threads and 32 cube size ------------------ 
- Min FPS : 17
- Max FPS : 90
- Avg FPS : 25
-Real FPS avg : 24
+Results with 2 threads and cube size = 32 (5940 sides) ------------------
+ Min FPS: 16
+ Max FPS: 58
+ Avg FPS: 22
+Real Avg FPS: 21
 TH: 4
 SIZE: 32
 Number of threads 4
 Each cube area side 32
-Result with 4 threads and 32 cube size ------------------ 
- Min FPS : 12
- Max FPS : 84
- Avg FPS : 21
-Real FPS avg : 20
+Results with 4 threads and cube size = 32 (5940 sides) ------------------
+ Min FPS: 16
+ Max FPS: 56
+ Avg FPS: 22
+Real Avg FPS: 21
 TH: 8
 SIZE: 32
 Number of threads 8
 Each cube area side 32
-Result with 8 threads and 32 cube size ------------------ 
- Min FPS : 11
- Max FPS : 75
- Avg FPS : 20
-Real FPS avg : 19
+Results with 8 threads and cube size = 32 (5940 sides) ------------------
+ Min FPS: 15
+ Max FPS: 56
+ Avg FPS: 22
+Real Avg FPS: 21
 TH: 1
 SIZE: 64
 Number of threads 1
 Each cube area side 64
-Result with 1 threads and 64 cube size ------------------ 
- Min FPS : 34
- Max FPS : 193
- Avg FPS : 73
-Real FPS avg : 65
+Results with 1 threads and cube size = 64 (1440 sides) ------------------
+ Min FPS: 26
+ Max FPS: 108
+ Avg FPS: 43
+Real Avg FPS: 39
 TH: 2
 SIZE: 64
 Number of threads 2
 Each cube area side 64
-Result with 2 threads and 64 cube size ------------------ 
- Min FPS : 24
- Max FPS : 112
- Avg FPS : 37
-Real FPS avg : 35
+Results with 2 threads and cube size = 64 (1440 sides) ------------------
+ Min FPS: 23
+ Max FPS: 89
+ Avg FPS: 33
+Real Avg FPS: 31
 TH: 4
 SIZE: 64
 Number of threads 4
 Each cube area side 64
-Result with 4 threads and 64 cube size ------------------ 
- Min FPS : 15
- Max FPS : 118
- Avg FPS : 30
-Real FPS avg : 28
+Results with 4 threads and cube size = 64 (1440 sides) ------------------
+ Min FPS: 22
+ Max FPS: 93
+ Avg FPS: 34
+Real Avg FPS: 31
 TH: 8
 SIZE: 64
 Number of threads 8
 Each cube area side 64
-Result with 8 threads and 64 cube size ------------------ 
- Min FPS : 15
- Max FPS : 97
- Avg FPS : 28
-Real FPS avg : 26
+Results with 8 threads and cube size = 64 (1440 sides) ------------------
+ Min FPS: 20
+ Max FPS: 91
+ Avg FPS: 33
+Real Avg FPS: 31
 TH: 1
 SIZE: 128
 Number of threads 1
 Each cube area side 128
-Result with 1 threads and 128 cube size ------------------ 
- Min FPS : 64
- Max FPS : 290
- Avg FPS : 102
-Real FPS avg : 87
+Results with 1 threads and cube size = 128 (360 sides) ------------------
+ Min FPS: 40
+ Max FPS: 166
+ Avg FPS: 62
+Real Avg FPS: 55
 TH: 2
 SIZE: 128
 Number of threads 2
 Each cube area side 128
-Result with 2 threads and 128 cube size ------------------ 
- Min FPS : 32
- Max FPS : 173
- Avg FPS : 56
-Real FPS avg : 51
+Results with 2 threads and cube size = 128 (360 sides) ------------------
+ Min FPS: 28
+ Max FPS: 126
+ Avg FPS: 51
+Real Avg FPS: 46
 TH: 4
 SIZE: 128
 Number of threads 4
 Each cube area side 128
-Result with 4 threads and 128 cube size ------------------ 
- Min FPS : 21
- Max FPS : 229
- Avg FPS : 46
-Real FPS avg : 42
+Results with 4 threads and cube size = 128 (360 sides) ------------------
+ Min FPS: 27
+ Max FPS: 142
+ Avg FPS: 52
+Real Avg FPS: 47
 TH: 8
 SIZE: 128
 Number of threads 8
 Each cube area side 128
-Result with 8 threads and 128 cube size ------------------ 
- Min FPS : 19
- Max FPS : 181
- Avg FPS : 44
-Real FPS avg : 40
+Results with 8 threads and cube size = 128 (360 sides) ------------------
+ Min FPS: 26
+ Max FPS: 144
+ Avg FPS: 52
+Real Avg FPS: 47
 TH: 1
 SIZE: 256
 Number of threads 1
 Each cube area side 256
-Result with 1 threads and 256 cube size ------------------ 
- Min FPS : 112
- Max FPS : 396
- Avg FPS : 157
-Real FPS avg : 121
+Results with 1 threads and cube size = 256 (84 sides) ------------------
+ Min FPS: 68
+ Max FPS: 235
+ Avg FPS: 102
+Real Avg FPS: 84
 TH: 2
 SIZE: 256
 Number of threads 2
 Each cube area side 256
-Result with 2 threads and 256 cube size ------------------ 
- Min FPS : 49
- Max FPS : 250
- Avg FPS : 91
-Real FPS avg : 78
+Results with 2 threads and cube size = 256 (84 sides) ------------------
+ Min FPS: 38
+ Max FPS: 232
+ Avg FPS: 94
+Real Avg FPS: 79
 TH: 4
 SIZE: 256
 Number of threads 4
 Each cube area side 256
-Result with 4 threads and 256 cube size ------------------ 
- Min FPS : 37
- Max FPS : 365
- Avg FPS : 87
-Real FPS avg : 71
+Results with 4 threads and cube size = 256 (84 sides) ------------------
+ Min FPS: 39
+ Max FPS: 224
+ Avg FPS: 93
+Real Avg FPS: 78
 TH: 8
 SIZE: 256
 Number of threads 8
 Each cube area side 256
-Result with 8 threads and 256 cube size ------------------ 
- Min FPS : 33
- Max FPS : 332
- Avg FPS : 84
-Real FPS avg : 70
+Results with 8 threads and cube size = 256 (84 sides) ------------------
+ Min FPS: 34
+ Max FPS: 219
+ Avg FPS: 92
+Real Avg FPS: 77
 TH: 1
 SIZE: 512
 Number of threads 1
 Each cube area side 512
-Result with 1 threads and 512 cube size ------------------ 
- Min FPS : 150
- Max FPS : 490
- Avg FPS : 229
-Real FPS avg : 146
+Results with 1 threads and cube size = 512 (18 sides) ------------------
+ Min FPS: 123
+ Max FPS: 333
+ Avg FPS: 169
+Real Avg FPS: 122
 TH: 2
 SIZE: 512
 Number of threads 2
 Each cube area side 512
-Result with 2 threads and 512 cube size ------------------ 
- Min FPS : 79
- Max FPS : 435
- Avg FPS : 170
-Real FPS avg : 116
+Results with 2 threads and cube size = 512 (18 sides) ------------------
+ Min FPS: 102
+ Max FPS: 375
+ Avg FPS: 169
+Real Avg FPS: 121
 TH: 4
 SIZE: 512
 Number of threads 4
 Each cube area side 512
-Result with 4 threads and 512 cube size ------------------ 
- Min FPS : 79
- Max FPS : 493
- Avg FPS : 167
-Real FPS avg : 116
+Results with 4 threads and cube size = 512 (18 sides) ------------------
+ Min FPS: 60
+ Max FPS: 352
+ Avg FPS: 166
+Real Avg FPS: 120
 TH: 8
 SIZE: 512
 Number of threads 8
 Each cube area side 512
-Result with 8 threads and 512 cube size ------------------ 
- Min FPS : 69
- Max FPS : 377
- Avg FPS : 188
-Real FPS avg : 128
+Results with 8 threads and cube size = 512 (18 sides) ------------------
+ Min FPS: 102
+ Max FPS: 317
+ Avg FPS: 166
+Real Avg FPS: 121
 done
-

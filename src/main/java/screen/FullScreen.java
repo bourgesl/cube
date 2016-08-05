@@ -42,36 +42,31 @@ import java.awt.image.BufferStrategy;
  */
 public abstract class FullScreen implements Runnable {
 
-    public static final int NUM_BUFFERS = 2;
+    public static final int NUM_BUFFERS = 2; // triple buffer, 2 = double buffer
 
-    public static final long MAX_FRAMES = 60 * 20; // ~20s at 60 FPS
+    public static final long ROT_FRAMES = (360 / Cubes.ANG_INC); // 1 complete rotation
 
-    /* The fixed wanted duration of a frame in nanosecond. Example : 1/60=16666666... */
-    private static long PERIOD = 16666666;
+    public static final long MIN_FRAMES = ROT_FRAMES * 3; // calibration
 
-    /*
-	 * Screen device 
-     */
+    public static final long MAX_FRAMES = MIN_FRAMES + ROT_FRAMES * 30; // 30 complete rotations in benchmark
+
+    /** Screen device */
     protected GraphicsDevice currentScreenDevice = null;
 
-    /* 
-	 * Manages the double (or more) buffers process for rendering. The attribute is accessible
-	 * for potential content lost/restored event (see BufferStrategy)
+    /** 
+     * Manages the double (or more) buffers process for rendering. The attribute is accessible
+     * for potential content lost/restored event (see BufferStrategy)
      */
     protected BufferStrategy bufferStrategy = null;
 
-    /* 
-	 * The main frame rendered in full screen
-     */
+    /** The main frame rendered in full screen */
     protected Frame mainFrame = null;
 
-    /*
-	 * The rendering thread
-     */
+    /* The rendering thread */
     protected Thread renderThread = null;
 
     private long averageRealFPS = 0l;
-    private long numRealFPS = 0l;
+    private long frameCount = 0l;
 
     private volatile boolean running = true;
 
@@ -81,7 +76,6 @@ public abstract class FullScreen implements Runnable {
      * thread
      */
     public FullScreen() {
-
         // Default screen parameters
         GraphicsEnvironment graphicsEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.currentScreenDevice = graphicsEnv.getDefaultScreenDevice();
@@ -92,6 +86,7 @@ public abstract class FullScreen implements Runnable {
 
             // By Default, exit is done by 'esc' key
             this.mainFrame.addKeyListener(new KeyAdapter() {
+                @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         stopThread();
@@ -107,7 +102,8 @@ public abstract class FullScreen implements Runnable {
 
             currentScreenDevice.setFullScreenWindow(this.mainFrame);
             renderThread = new Thread(this);
-            renderThread.setName("Rendering demo thread");
+            renderThread.setPriority(Thread.MAX_PRIORITY - 1);
+            renderThread.setName("CubeRenderThread");
         } else {
             System.out.println("The fullscreen mode is not supported. This template is designed to run in full screen.");
             System.exit(0);
@@ -125,25 +121,20 @@ public abstract class FullScreen implements Runnable {
      */
     @Override
     public void run() {
-
-        mainFrame.createBufferStrategy(NUM_BUFFERS);			// 2 = double buffer
+        mainFrame.createBufferStrategy(NUM_BUFFERS);
         bufferStrategy = mainFrame.getBufferStrategy();
 
         long time;
-        int n;
-        final StringBuilder sb = new StringBuilder(16);
-        String realFPS = null;
         long fps;
+        String realFPS = null;
+        final StringBuilder sb = new StringBuilder(16);
 
-        while (running && numRealFPS < MAX_FRAMES) {
-            n = 0;
+        while (running && frameCount < MAX_FRAMES) {
             time = System.nanoTime();
 
             // Render single frame
             do {
                 do {
-                    n++;
-
                     // Get a new graphics context every time through the loop
                     // to make sure the strategy is validated
                     final Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
@@ -164,8 +155,7 @@ public abstract class FullScreen implements Runnable {
                     // Dispose the graphics
                     g.dispose();
 
-                    // Repeat the rendering if the drawing buffer contents
-                    // were restored
+                    // Repeat the rendering if the drawing buffer contents were restored
                 } while (bufferStrategy.contentsRestored());
 
                 // buffer swap() including (not very efficient) VSync()
@@ -174,33 +164,23 @@ public abstract class FullScreen implements Runnable {
                 // Repeat the rendering if the drawing buffer was lost
             } while (bufferStrategy.contentsLost());
 
+            // Real fps:
             time = System.nanoTime() - time;
-            // real fps
-            fps = Math.round(1e9d * n / time);
-
-            averageRealFPS += fps;
-            numRealFPS++;
+            fps = Math.round(1e9d / time);
 
             sb.setLength(0);
-            sb.append("Real FPS : ");
-
+            sb.append("Real FPS: ");
             sb.append(fps);
             realFPS = sb.toString();
 
-            // sync()
-            /*long realPeriod=System.nanoTime()-time;
-			if(realPeriod<PERIOD)
-			try {
-				long ms=(PERIOD-realPeriod)/1000000;
-				int nanos=(int)((PERIOD-realPeriod)-(ms*1000000));
-				// NB if(ms>0 || nanos>300000) if nano too small and ms=0, the call of Thread.sleep itself can be too long... 
-				Thread.sleep(ms,nanos);
-			} catch (InterruptedException e) {
-				System.out.println("Interruption...");
-			}*/
+            frameCount++;
+
+            if (frameCount > MIN_FRAMES) {
+                averageRealFPS += fps;
+            }
+
         } // running
 
-//        System.out.println("Rendering stopped.");
         exit();
     }
 
@@ -214,15 +194,17 @@ public abstract class FullScreen implements Runnable {
         }
     }
 
-    public void exit() {
+    void exit() {
         curtain();
 
-        System.out.println(String.format("Real Avg FPS: %d", (averageRealFPS / numRealFPS)));
+        if (frameCount > MIN_FRAMES) {
+            System.out.println(String.format("Real Avg FPS: %d", (averageRealFPS / (frameCount - MIN_FRAMES))));
+        }
 
         System.exit(0);
     }
 
-    protected void start() {
+    void start() {
         renderThread.start();
     }
 
@@ -230,8 +212,8 @@ public abstract class FullScreen implements Runnable {
      * This is the method redefine to draw on the fullscreen
      * @param g
      */
-    public abstract void updateAndRender(Graphics2D g, StringBuilder sb);
+    abstract void updateAndRender(Graphics2D g, StringBuilder sb);
 
-    public abstract void curtain();
+    abstract void curtain();
 
 }

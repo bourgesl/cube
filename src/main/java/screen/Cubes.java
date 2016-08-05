@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
-import javax.swing.SwingUtilities;
 
 /**
  * A fullscreen of rotating cubes painted by Java2d.
@@ -71,8 +70,6 @@ import javax.swing.SwingUtilities;
  */
 public final class Cubes extends FullScreen {
 
-    private static final int MIN_FRAMES = 100;
-
     private static final boolean SKIP_RENDER = false;
 
     public static final boolean USE_GRAPHICS_ACCELERATION = true;
@@ -81,10 +78,10 @@ public final class Cubes extends FullScreen {
     //-Xbootclasspath/a:[full path]/marlin-X.Y.jar -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine	
     //-Xbootclasspath/a:E:/projets/pixelGiant/new-tuesday/new-tuesday/distribution/marlin-X.Y.jar -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine
     /* THREADS_COUNT>=2 enables multi thread rendering */
-    private static int THREADS_COUNT = 4;
+    private static final int THREADS_COUNT = getInteger("threadCount", 4);
 
     /* Rectangular area of CUBE_SIZE width containing a cube */
-    private static int CUBE_SIZE = 64;		// try 32,16,128...
+    private static final int CUBE_SIZE = getInteger("cubeSize", 64);		// try 32,16,128...
 
     /* A cube to be rendered by Java2D... */
     private static final class Cube {
@@ -115,7 +112,7 @@ public final class Cubes extends FullScreen {
         final Path2D.Float[] sides;
         final boolean[] visible;
 
-        public Cube(double cx, double cy) {
+        Cube(double cx, double cy) {
             int j = 0;
             for (int i = 0; i < 8; i++) {
                 x[i] = 8 * points[j++];
@@ -136,15 +133,29 @@ public final class Cubes extends FullScreen {
     }
 
     /* static trigonometric table initialized with precision 1/8 degree */
-    private static final int ANG_SIZE = 360 * 8;
+    public static final int ANG_PREC = 8;
+    public static final int ANG_INC = 4;
+    private static final int ANG_SIZE = 360 * ANG_PREC;
     private static final double[] cos = new double[ANG_SIZE];
     private static final double[] sin = new double[ANG_SIZE];
 
     static {
         for (int i = 0; i < ANG_SIZE; i++) {
-            cos[i] = Math.cos(((double) (Math.PI * 2 * i)) / ((double) ANG_SIZE));
-            sin[i] = Math.sin(((double) (Math.PI * 2 * i)) / ((double) ANG_SIZE));
+            cos[i] = Math.cos((2 * i) * Math.PI / ANG_SIZE);
+            sin[i] = Math.sin((2 * i) * Math.PI / ANG_SIZE);
         }
+    }
+
+    static int getInteger(final String key, final int def) {
+        final String property = System.getProperty(key);
+        if (property != null) {
+            try {
+                return Integer.parseInt(property);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid integer value for " + key + " = " + property);
+            }
+        }
+        return def;
     }
 
     /* Rendering thread in multi thread mode. Simple : each thread
@@ -157,8 +168,8 @@ public final class Cubes extends FullScreen {
         private final int start;
         private final int end;
 
-        Drawer(int start, int end) {
-            this.start = start;
+        Drawer(int idx, int end) {
+            this.start = idx;
             this.end = end;
         }
 
@@ -191,29 +202,10 @@ public final class Cubes extends FullScreen {
 
     // Let's rotate...
     public static void main(String[] a) {
-        String threadCount = System.getProperty("threadCount");
-        if (threadCount != null) {
-            try {
-                THREADS_COUNT = Integer.parseInt(threadCount);
-            } finally {
-                System.out.println("Number of threads " + THREADS_COUNT);
-            }
-        }
-        String cubeSize = System.getProperty("cubeSize");
-        if (cubeSize != null) {
-            try {
-                CUBE_SIZE = Integer.parseInt(cubeSize);
-            } finally {
-                System.out.println("Each cube area side " + CUBE_SIZE);
-            }
-        }
+        System.out.println("Number of threads " + THREADS_COUNT);
+        System.out.println("Each cube area side " + CUBE_SIZE);
 
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                final Cubes demo = new Cubes();
-                demo.start();
-            }
-        });
+        new Cubes().start();
     }
 
     /**
@@ -228,7 +220,7 @@ public final class Cubes extends FullScreen {
         height = displayMode.getHeight();
 
         final int xCount = width / CUBE_SIZE;
-        final int yCount = displayMode.getHeight() / CUBE_SIZE;
+        final int yCount = height / CUBE_SIZE;
 
         cubesCount = xCount * yCount;
 
@@ -259,8 +251,8 @@ public final class Cubes extends FullScreen {
         // At each frame, we get a reference on the rendering buffer graphics2d.
         // To handle concurrency, we 'cut' it into graphics context for each cube.
         gi = img.createGraphics();
-        gi.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
         gi.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        gi.setBackground(Color.BLACK);
 
         // each cube has its own graphics context
         // It could be reduce to each thread
@@ -273,7 +265,7 @@ public final class Cubes extends FullScreen {
         }
     }
 
-    public static BufferedImage newImage(final GraphicsConfiguration gc, final int w, final int h) {
+    static BufferedImage newImage(final GraphicsConfiguration gc, final int w, final int h) {
         if (USE_GRAPHICS_ACCELERATION) {
             return gc.createCompatibleImage(w, h);
         }
@@ -285,10 +277,10 @@ public final class Cubes extends FullScreen {
      * @param g2 the graphics context of the fullscreen frame
      */
     @Override
-    public void updateAndRender(final Graphics2D g2, final StringBuilder sb) {
+    void updateAndRender(final Graphics2D g2, final StringBuilder sb) {
 
         // Update the global angle of rotation
-        ang += 8;
+        ang += ANG_INC;
         if (ang >= ANG_SIZE) {
             ang -= ANG_SIZE;
         }
@@ -359,7 +351,6 @@ public final class Cubes extends FullScreen {
         // Clear screen
         gi.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 //            gi.setBackground((frameCount % 2 == 0) ? Color.BLACK : Color.WHITE);
-        gi.setBackground(Color.BLACK);
         gi.clearRect(0, 0, width, height);
         gi.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -385,7 +376,7 @@ public final class Cubes extends FullScreen {
         }
 
         time = System.nanoTime() - time;
-        
+
         // Real fps count to render our cubes. The display rate is physically 
         // maximized by 60 fps courtesy of FullScreen class
         final long fps = Math.round(1e9d / time);
@@ -401,13 +392,14 @@ public final class Cubes extends FullScreen {
         frameCount++;
 
         sb.setLength(0);
-        sb.append("Render FPS: ").append(fps);
+        sb.append("Rdr FPS: ").append(fps);
+
+        // Paint on given buffer:
+        g2.drawImage(img, 0, 0, null);
 
         final String infoFPS = sb.toString();
-        gi.setColor((fps < 60) ? Color.RED : Color.YELLOW);
-        gi.drawString(infoFPS, 100, 100);
-
-        g2.drawImage(img, 0, 0, null);
+        g2.setColor((fps < 60) ? Color.RED : Color.YELLOW);
+        g2.drawString(infoFPS, 100, 100);
     }
 
     /**
@@ -415,24 +407,25 @@ public final class Cubes extends FullScreen {
      * Sides are drawn by Java2d fill(Shape).
      * @param j index of the cube in tiles[]
      */
-    public void drawCube(final int j) {
+    void drawCube(final int j) {
         if (SKIP_RENDER) {
             return;
         }
 
+        final Cube c = cube;
         final Graphics2D g = tiles[j];
 
         // Rendering of visible sides (3 max by cube)
         for (int i = 0; i < 6; i++) {
-            if (cube.visible[i]) {
+            if (c.visible[i]) {
                 g.setColor(Cube.fcol[i]);
-                g.fill(cube.sides[i]);
+                g.fill(c.sides[i]);
             }
         }
     }
 
     @Override
-    public void curtain() {
+    void curtain() {
         for (Graphics2D g0 : tiles) {
             g0.dispose();
         }
@@ -441,13 +434,13 @@ public final class Cubes extends FullScreen {
         try {
             System.out.printf("Results with %d threads and cube size = %d (%d sides) ------------------\n",
                     Cubes.THREADS_COUNT, Cubes.CUBE_SIZE, cubesCount * 3
-
             );
-            System.out.println(String.format(" Min FPS: %d", minFPS));
-            System.out.println(String.format(" Max FPS: %d", maxFPS));
-
             if (frameCount > MIN_FRAMES) {
+                System.out.println(String.format(" Min FPS: %d", minFPS));
+                System.out.println(String.format(" Max FPS: %d", maxFPS));
                 System.out.println(String.format(" Avg FPS: %d", (averageFPS / (frameCount - MIN_FRAMES))));
+            } else {
+                System.out.println("Not enough data !");
             }
         } catch (Exception ignored) {
 

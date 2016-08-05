@@ -3,9 +3,9 @@
 source ./test-jdk9-cl.sh
 #source ./test-openjdk7.sh
 
-echo "CPU info:"
-lscpu
-cpupower frequency-info
+#echo "CPU info:"
+#lscpu
+#cpupower frequency-info
 
 
 echo "Java version:"
