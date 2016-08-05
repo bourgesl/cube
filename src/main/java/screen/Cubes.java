@@ -112,7 +112,7 @@ public final class Cubes extends FullScreen {
         final double[] ye = new double[8];
         double cx, cy;                   // Position on screen
 
-        final Path2D.Double[] sides;
+        final Path2D.Float[] sides;
         final boolean[] visible;
 
         public Cube(double cx, double cy) {
@@ -126,11 +126,11 @@ public final class Cubes extends FullScreen {
             }
             this.cx = cx;
             this.cy = cy;
-            sides = new Path2D.Double[6];
+            sides = new Path2D.Float[6];
             visible = new boolean[6];
 
             for (int i = 0; i < 6; i++) {
-                sides[i] = new Path2D.Double();
+                sides[i] = new Path2D.Float();
             }
         }
     }
@@ -154,10 +154,10 @@ public final class Cubes extends FullScreen {
      */
     private final class Drawer implements Runnable {
 
-        final int start;
-        final int end;
+        private final int start;
+        private final int end;
 
-        Drawer(int thIdx, int start, int end) {
+        Drawer(int start, int end) {
             this.start = start;
             this.end = end;
         }
@@ -243,7 +243,7 @@ public final class Cubes extends FullScreen {
 
             final int p = cubesCount / THREADS_COUNT;
             for (int i = 0; i < THREADS_COUNT; i++) {
-                drawers[i] = (i == THREADS_COUNT - 1) ? new Drawer(i, i * p, cubesCount) : new Drawer(i, i * p, i * p + p);
+                drawers[i] = (i == THREADS_COUNT - 1) ? new Drawer(i * p, cubesCount) : new Drawer(i * p, i * p + p);
             }
         } else {
             pool = null;
@@ -341,7 +341,7 @@ public final class Cubes extends FullScreen {
             if ((ax * by - bx * ay) < 0.0) {
                 cube.visible[i] = true;
 
-                final Path2D.Double p = cube.sides[i];
+                final Path2D.Float p = cube.sides[i];
                 p.reset();
                 p.moveTo(xe0, ye0);
                 p.lineTo(xe1, ye1);
@@ -353,7 +353,7 @@ public final class Cubes extends FullScreen {
             }
         }
 
-        // Render        
+        // Render
         long time = System.nanoTime();
 
         // Clear screen
@@ -385,6 +385,7 @@ public final class Cubes extends FullScreen {
         }
 
         time = System.nanoTime() - time;
+        
         // Real fps count to render our cubes. The display rate is physically 
         // maximized by 60 fps courtesy of FullScreen class
         final long fps = Math.round(1e9d / time);
@@ -400,8 +401,7 @@ public final class Cubes extends FullScreen {
         frameCount++;
 
         sb.setLength(0);
-        sb.append(cubesCount * 3);
-        sb.append(" sides - FPS: ").append(fps);
+        sb.append("Render FPS: ").append(fps);
 
         final String infoFPS = sb.toString();
         gi.setColor((fps < 60) ? Color.RED : Color.YELLOW);
@@ -439,14 +439,15 @@ public final class Cubes extends FullScreen {
         gi.dispose();
 
         try {
-            System.out.println(String.format("Result with %d threads and %d cube size ------------------ ",
-                    Cubes.THREADS_COUNT,
-                    Cubes.CUBE_SIZE));
-            System.out.println(String.format(" Min FPS : %d", minFPS));
-            System.out.println(String.format(" Max FPS : %d", maxFPS));
+            System.out.printf("Results with %d threads and cube size = %d (%d sides) ------------------\n",
+                    Cubes.THREADS_COUNT, Cubes.CUBE_SIZE, cubesCount * 3
+
+            );
+            System.out.println(String.format(" Min FPS: %d", minFPS));
+            System.out.println(String.format(" Max FPS: %d", maxFPS));
 
             if (frameCount > MIN_FRAMES) {
-                System.out.println(String.format(" Avg FPS : %d", (averageFPS / (frameCount - MIN_FRAMES))));
+                System.out.println(String.format(" Avg FPS: %d", (averageFPS / (frameCount - MIN_FRAMES))));
             }
         } catch (Exception ignored) {
 

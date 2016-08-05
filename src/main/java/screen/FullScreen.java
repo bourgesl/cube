@@ -217,7 +217,7 @@ public abstract class FullScreen implements Runnable {
     public void exit() {
         curtain();
 
-        System.out.println(String.format("Real FPS avg : %d", (averageRealFPS / numRealFPS)));
+        System.out.println(String.format("Real Avg FPS: %d", (averageRealFPS / numRealFPS)));
 
         System.exit(0);
     }
