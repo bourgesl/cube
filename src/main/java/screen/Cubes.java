@@ -203,12 +203,30 @@ public final class Cubes extends FullScreen {
 
     // Let's rotate...
     public static void main(String[] a) {
-        System.out.println("Number of threads " + THREADS_COUNT);
-        System.out.println("Each cube area side " + CUBE_SIZE);
+        // First display which renderer is tested:
+        // JDK9 only:
+        System.setProperty("sun.java2d.renderer.verbose", "true");
+        System.out.println("Testing renderer: ");
+        // Other JDK:
+        String renderer = "undefined";
+        try {
+            renderer = sun.java2d.pipe.RenderingEngine.getInstance().getClass().getName();
+            System.out.println(renderer);
+        } catch (Throwable th) {
+            // may fail with JDK9 jigsaw (jake)
+            if (false) {
+                System.err.println("Unable to get RenderingEngine.getInstance()");
+                th.printStackTrace();
+            }
+        }
+
+        // Dump settings:
+        System.out.println("Number of threads:   " + THREADS_COUNT);
+        System.out.println("Each cube area side: " + CUBE_SIZE);
 
         new Cubes().start();
     }
-
+    
     /**
      * Constructor initializes our cubes and threads pool if necessary 
      */
