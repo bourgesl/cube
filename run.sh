@@ -1,11 +1,10 @@
 #!/bin/bash
 
-source ./test-jdk9-cl.sh
-#source ./test-openjdk7.sh
+source ~/test-jdk-gh.sh
 
 #echo "CPU info:"
 #lscpu
-#cpupower frequency-info
+cpupower frequency-info
 
 
 echo "Java version:"
@@ -16,7 +15,7 @@ JAVA_OPTS="-verbose:gc -Xms256m -Xmx256m"
 
 
 TH=4
-SIZE=64
+SIZE=256 # 4K screen
 
 echo "TH: $TH"
 echo "SIZE: $SIZE"
